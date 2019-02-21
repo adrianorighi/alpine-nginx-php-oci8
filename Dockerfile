@@ -45,6 +45,8 @@ RUN apk add --update --no-cache \
     php7-intl \
     php7-pear \
     php7-dom \
+    php7-common \
+    php7-tokenizer \
     gcompat \
     libnsl && \
     rm -rf /var/cache/apk/*
@@ -109,8 +111,7 @@ RUN sed -i -e "s/user = nobody/user = nginx/g" /etc/php7/php-fpm.d/www.conf && \
     find /etc/php7/php-fpm.d/ -name "*.ini" -exec sed -i -re 's/^(\s*)#(.*)/\1;\2/g' {} \;
 
 # setup nginx public dir
-RUN mkdir -p /app/public
-ADD ./scripts/index.php /app/public/index.php
+RUN mkdir -p /app
 
 # Start Supervisord
 ADD ./scripts/start.sh /start.sh
