@@ -70,7 +70,10 @@ RUN cd /opt/oci8 \
     && ./configure --with-oci8=shared,instantclient,/opt/oci8/instantclient_12_1 \
     && make \
     && make install \
-    && echo "extension=oci8.so" >> /etc/php7/conf.d/oci8.ini
+    && echo "extension=oci8.so" >> /etc/php7/conf.d/oci8.ini \
+    && cd /opt/oci8 \
+    && rm *.zip \
+    && rm *.tgz
 
 
 COPY ./configs/nginx.conf /etc/nginx/nginx.conf
