@@ -47,6 +47,7 @@ RUN apk add --update --no-cache \
     php7-dom \
     php7-common \
     php7-tokenizer \
+    php7-fileinfo \
     gcompat \
     libnsl && \
     rm -rf /var/cache/apk/*
@@ -116,6 +117,10 @@ RUN mkdir -p /app
 # Start Supervisord
 ADD ./scripts/start.sh /start.sh
 RUN chmod 755 /start.sh
+
+# Cleanup dev dependencies
+RUN apk del -f .build-deps
+
 # Expose Ports
 EXPOSE 443 80
 
