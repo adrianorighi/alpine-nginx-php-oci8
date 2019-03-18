@@ -118,9 +118,6 @@ RUN mkdir -p /app
 ADD ./scripts/start.sh /start.sh
 RUN chmod 755 /start.sh
 
-# Cleanup dev dependencies
-RUN apk del -f .build-deps
-
 # Expose Ports
 EXPOSE 443 80
 
